@@ -1,0 +1,35 @@
+<!-- 
+<input type="text" [(ngModel)]="mymodel" value="mymodel" (change)="valuechange($event.target.value)" />
+ [(ngModel)]="bodyData"
+ -->
+<ngb-tabset type="pills">
+     <ngb-tab title="Body">
+       <ng-template ngbTabContent>
+           <textarea class="form-control" placeholder="Body"  id="bodyText" rows="10" style="color: blue;">{{bodyData | json}}</textarea>
+       </ng-template>
+     </ngb-tab>
+     <ngb-tab title="Headers">
+       <ng-template ngbTabContent>
+
+       <!-- <div class="form-control" style="height: 100%;" (input)="updateHeader($event)">
+            <div id="headerData" contenteditable="true" 
+                *ngFor="let data of headerData">
+                  {{data.key}}:{{data.value}}
+            </div>
+         </div> -->
+
+         <div id="headerData" class="form-control" *ngFor="let data of headerData; let i = index" style="height: 100%; color: blue;">
+            <input id="{{'headerData-'+i}}" (input)="updateHeader($event.target, i)"
+             
+              type="text" class="form-control"  required value = {{data.key}}:{{data.value}}>
+         </div>
+
+<!--           <div id="headerData" class="form-control" style="height: 100%; color: blue;">
+            <input id="header" *ngFor="let data of headerData; let i = index"
+               (input)="updateData($event,i,data.key,data.value)" type="text" class="form-control"  required value = {{i}}:{{data.key|json}}:{{data.value|json}}>
+          </div> -->
+       </ng-template>
+     </ngb-tab>
+</ngb-tabset>
+
+<!-- (input)="updateHeader($event.target, i)" -->

@@ -1,0 +1,73 @@
+<div style="margin: auto; margin-bottom: 50px;">
+ <data-table id="persons-grid"
+     headerTitle=""
+     [items]="items"
+     [itemCount]="itemCount"
+     (reload)="reloadItems($event)"
+     (rowClick)="rowClick($event)"
+     (rowDoubleClick)="rowDoubleClick($event)"
+     [rowTooltip]="rowTooltip">
+     <data-table-column
+         [property]="'groupIEN'"
+         [header]="'GroupIEN'"
+         [width]="100"
+         [sortable]="true"
+         [resizable]="true">
+     </data-table-column>
+     <data-table-column
+         [property]="'imageCount'"
+         [header]="'Image'"
+         [width]="80"
+         [sortable]="true"
+         [resizable]="true">
+     </data-table-column>
+     <data-table-column
+         [property]="'studyId'"
+         [header]="'StudyId'"
+         [sortable]="true"
+         [resizable]="true">
+     </data-table-column>
+     <data-table-column
+         [property]="'event'"
+         [header]="'Event'"
+         [sortable]="true"
+         [resizable]="true">
+     </data-table-column>
+     <data-table-column
+         [property]="'studyDate'"
+         [header]="'StudyDate'"
+         [sortable]="true"
+         [resizable]="true">
+     </data-table-column>
+     <data-table-column
+         [property]="'procedureDescription'"
+         [header]="'Procedure'"
+         [sortable]="true"
+         [resizable]="true">
+     </data-table-column>
+     <data-table-column
+         [property]="'specialtyDescription'"
+         [header]="'Speciality'"
+         [width]="100"
+         [sortable]="true"
+         [resizable]="true">
+     </data-table-column>
+     <data-table-column
+         [header]="'Actions'"
+         [width]="280"
+         [resizable]="true">
+         <ng-template #dataTableHeader let-item="item">
+             <span style="color: rgb(232, 0, 0)">Actions</span>
+         </ng-template>
+         <ng-template #dataTableCell let-item="item">
+             <a class="btn btn-warning btn-sm" (click)="viewStudy(item.viewerUrl)">View</a>
+             <a id="addToSession_'+ i +'" class="btn btn-info btn-sm addToSession" onClick="addToSession(\''+ dataVal.contextId +'\', \''+ dataVal.securityToken +'\',\''+ dataVal.patientICN +'\',\''+ dataVal.patientDFN +'\',\''+ dataVal.siteNumber +'\', \'' + data.authSiteNumber + '\')" style="display: none">Add</a>&nbsp;
+             <a href="#" class="btn btn-primary btn-sm" (click)="manageStudy(item.manageUrl)">Manage</a>
+             &nbsp;
+             <a href="#" class="btn btn-success btn-sm" (click)="getDetailsURL(item.detailsUrl)">Detail</a>
+             &nbsp;
+             <a class="btn btn-danger btn-sm" (click)="viewStudy(item.viewerUrl)">Purge</a>
+         </ng-template>
+     </data-table-column>
+ </data-table>
+</div>

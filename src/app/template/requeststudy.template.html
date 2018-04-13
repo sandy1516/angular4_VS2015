@@ -1,0 +1,82 @@
+<div *ngIf = !showStudy class="form-horizontal" id="requestStudyInfo">
+<!-- /input-group -->
+   <div class="input-group">
+      <select id="headerSelectBox" class="form-control" (change)="applyHeaderTitle($event.target.value)">
+         <option *ngFor="let patient of patients.items | filter">
+            {{patient.title}}
+         </option>
+      </select>
+      <span class="input-group-btn">
+      <button (click)="applyHeaderTitle()" class="btn btn-primary" type="button" style="padding: 6px;">Apply</button>
+      </span>
+   </div>
+   <!-- /input-group -->
+   <br />
+   <div class="input-group">
+      <input id="requestUrl" [(ngModel)]="requestUrl" name="requestUrl" placeholder="Enter request URL" class="form-control" type="text"/>
+      <input name="queryType" placeholder="Query Type" class="form-control" type="text" id="queryType" style="display: none"> <br />
+      <span class="input-group-btn">				   		
+      <button (click)="fetchStudyInformation()" type="button" class="btn btn-warning" style="padding: 6px;">Send</button>
+      </span>
+   </div>
+   <br />
+   <study-headerbody [(bodyData)]="bodyData" [(headerData)]="headerData" (updatedHeader)="updatedHeader($event)"></study-headerbody>
+
+</div>
+
+<div *ngIf = showStudy>
+   <div class="row" id="restultPageHeaderText">
+      <div class="col-lg-12">
+         <h4 class="header_align">Search Results</h4>
+      </div>
+   </div>
+   <div id="sudyInformation">
+         <!-- /.row -->
+         <!-- <div class="row"> -->
+            <!-- <div class="col-lg-12"> -->
+               <!-- <div class="panel"> -->
+                  <!-- <div class="panel-body" style="padding: 0px;background-color: #ffffff"> -->
+                     <div class="form-inline">
+                        <div class="form-group">
+                           <label class="filter-col" id="patientICN">
+                              PatientICN : {{studyInfo.patientICN}}
+                           </label>
+                        </div>
+                        <div class="form-group">
+                           <label class="filter-col" id="siteNumber">
+                              Site Number : {{studyInfo.siteNumber}}
+                           </label>
+                        </div>
+                        <div class="form-group">
+                           <label class="filter-col" id="authSiteNumber">
+                              AuthSiteNumber : {{studyInfo.authSiteNumber}}
+                           </label>
+                        </div>
+                        <div class="form-group">
+                           <label class="filter-col" id="userId">
+                              User ID : {{studyInfo.userId}}
+                           </label>
+                        </div>
+                        <div class="form-group" id="dispalySession" style="display: none">
+                           <label class="filter-col">Session ID:</label>
+                           <input type="text" class="form-control" id="sessionId" readonly>
+                        </div>
+                        <textarea class="form-control" rows="10" id="securityToken" style="display: none;"></textarea>
+                        <input type="text" class="form-control" id="authSiteNumberVal" style="display: none;">
+                        <div class="form-group" id="statusBtn" style="display: none">
+                           <button type="button" class="btn btn-info btn-sm" onclick="loadStatusAction()">Status</button>
+                        </div>
+                     </div>
+
+                     <study-info-table [studyInfo]="studyInfo" ></study-info-table>
+                     
+                  <!-- </div> -->
+                  <!-- /.panel-body -->
+               <!-- </div> -->
+               <!-- /.panel -->
+            <!-- </div> -->
+            <!-- /.col-lg-12 -->
+         <!-- </div> -->
+         <!-- /.row -->
+      </div>
+</div>
