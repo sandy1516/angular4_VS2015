@@ -7,11 +7,11 @@ import { Study } from '../models/study';
 @Injectable()
 export class PatientDetailsService {
 
-	requestUrl: string = "http://localhost:9911/vix/viewer/studyquery";
+	requestUrl: string = "http://localhost:9911/xyz";
 
 	constructor( private http: Http ) { }
 
-    patientTitleUrl: string = 'http://localhost:9911/vix/viewer/test/testdata/Default';
+    patientTitleUrl: string = 'http://localhost:9911/xyz';
 
     patients: any = {};
     headers: Array<JSON> = [];
